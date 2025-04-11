@@ -7,7 +7,14 @@ import { LockOpen } from "lucide-react"
 
 
 function Prompts() {
-    const designprompt: string = "A loyalty rewards app "
+    
+    const designOptions = [
+        "Design a loyalty app",
+        "Design a landing page",
+        "Design a dashboard",
+        "Design a checkout flow"
+      ];
+
     const forprompt: string = "a foodtruck business"
 
   return (
@@ -21,7 +28,7 @@ function Prompts() {
                 <div>
                     <p className="bg-pink-400 inline-block px-4 py-1 rounded-tr-lg rounded-tl-lg text-white text-xs">Design</p>
                     <div className="flex items-center mb-4">
-                        <span className="text-white pe-6 text-2xl bg-pink-500 px-4 py-2 rounded-tr-lg rounded-br-lg rounded-bl-lg me-4 flex flex-grow"> {designprompt} </span>
+                        <span className="text-white pe-6 text-2xl bg-pink-500 px-4 py-2 rounded-tr-lg rounded-br-lg rounded-bl-lg me-4 flex flex-grow"> {designOptions} </span>
                         <Button variant="ghost" size="icon" className="text-slate-900">
                             <Lock />
                         </Button>
