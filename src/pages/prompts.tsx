@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import Spacebar from "../assets/spacebar.svg"
 import { Lock } from "lucide-react"
@@ -15,7 +16,33 @@ function Prompts() {
         "Design a checkout flow"
       ];
 
-    const forprompt: string = "a foodtruck business"
+      const forOptions = [
+        "for a food truck business",
+        "for a freelance photographer",
+        "for a fitness app",
+        "for a pet adoption agency"
+      ];
+
+    // State to store the selected design option
+    const [selectedDesignOption, setSelectedDesignOption] = useState<string>(
+        designOptions[0]
+    );
+
+    const [forprompt, setForPrompt] = useState<string>(
+        forOptions[0]
+    );
+
+    // Function to generate a random design option
+        const generateRandomDesignOption = () => {
+        const randomIndex = Math.floor(Math.random() * designOptions.length);
+        setSelectedDesignOption(designOptions[randomIndex]);
+    };
+
+    const generateRandomForPrompt = () => {
+        const randomIndex = Math.floor(Math.random() * forOptions.length);
+        setForPrompt(forOptions[randomIndex]); 
+    };
+
 
   return (
     <>
@@ -28,7 +55,7 @@ function Prompts() {
                 <div>
                     <p className="bg-pink-400 inline-block px-4 py-1 rounded-tr-lg rounded-tl-lg text-white text-xs">Design</p>
                     <div className="flex items-center mb-4">
-                        <span className="text-white pe-6 text-2xl bg-pink-500 px-4 py-2 rounded-tr-lg rounded-br-lg rounded-bl-lg me-4 flex flex-grow"> {designOptions} </span>
+                        <span className="text-white pe-6 text-2xl bg-pink-500 px-4 py-2 rounded-tr-lg rounded-br-lg rounded-bl-lg me-4 flex flex-grow"> {selectedDesignOption} </span>
                         <Button variant="ghost" size="icon" className="text-slate-900">
                             <Lock />
                         </Button>
@@ -45,7 +72,7 @@ function Prompts() {
                 </div>
             </div>
         </div>
-            <Button> Generate prompt
+            <Button onClick={() => { generateRandomDesignOption(); generateRandomForPrompt(); }}> Generate prompt
                 <img src={Spacebar} alt="Spacebar" className="ps-2" />
             </Button>
     </div>
