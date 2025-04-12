@@ -35,32 +35,34 @@ function Prompts() {
     
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
-          if (event.code === "Space") {
-            event.preventDefault(); // Prevent scrolling when space is pressed
-            generateRandomDesignOption();
-            generateRandomForPrompt();
-          }
+            if (event.code === "Space") {
+                event.preventDefault();
+                generatePromptFromAPI();
+            }
         };
     
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
-      }, [isDesignLocked, isForLocked]);
+    }, [isDesignLocked, isForLocked]);
   
 
-    // Function to generate a random design option
-    const generateRandomDesignOption = () => {
-        if (!isDesignLocked) {
-            const randomIndex = Math.floor(Math.random() * designOptions.length);
-            setSelectedDesignOption(designOptions[randomIndex]);
-        }
-    };
+    // Function to fetch prompt data from API
+    const generatePromptFromAPI = async () => {
+        try {
+            const res = await fetch("http://localhost:3000/api/generate", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ difficulty: "easy" }),
+            });
 
     // Function to generate a random "for" prompt
-    const generateRandomForPrompt = () => {
-        if (!isForLocked) {
-            const randomIndex = Math.floor(Math.random() * forOptions.length);
-            setForPrompt(forOptions[randomIndex]); 
-        }
+    const data = await res.json();
+
+        if (!isDesignLocked) setSelectedDesignOption(data.what);
+        if (!isForLocked) setForPrompt(data.for);
+    } catch (error) {
+        console.error("Failed to fetch prompt from API:", error);
+    }
     };
 
 
@@ -102,7 +104,7 @@ function Prompts() {
                 </div>
             </div>
         </div>
-            <Button onClick={() => { generateRandomDesignOption(); generateRandomForPrompt(); }}> Generate prompt
+        <Button onClick={generatePromptFromAPI}> Generate prompt
                 <img src={Spacebar} alt="Spacebar" className="ps-2" />
             </Button>
     </div>
