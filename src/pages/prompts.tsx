@@ -70,8 +70,9 @@ function Prompts() {
     <>
     <div className="flex flex-col items-center justify-center h-screen bg-amber-50 p-4">
         <div className="md:w-md w-full max-w-md">
-            <div className="text-center mb-8">
+            <div className="text-center mb-12">
                 <h1 className="text-5xl font-extrabold mb-4 text-primary/90">LearnUI</h1>
+                <p className="text-md text-gray-500 mb-8 max-w-lg">Practice you UI skills by generating a prompt and designing some figma screens!</p>
             </div>
             <div className="flex flex-col mb-16">
                 <div>
