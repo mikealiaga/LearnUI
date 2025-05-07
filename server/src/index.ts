@@ -27,8 +27,8 @@ app.use(
   })
 );
 
-app.options("*", (req, res) => {
-  res.sendStatus(200);
+app.options("/api/generate", (req, res) => {
+    res.sendStatus(200);
 });
 
 app.use(express.json());
