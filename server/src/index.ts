@@ -19,6 +19,7 @@ app.use(
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
+        console.warn("❌ Blocked origin:", origin);
         callback(new Error("Not allowed by CORS"));
       }
     },
@@ -27,7 +28,7 @@ app.use(
 );
 app.use(express.json());
 
-app.options("/api/generate", cors());
+app.options("*", cors());
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY!,
