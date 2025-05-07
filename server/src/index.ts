@@ -16,6 +16,8 @@ app.use(
 );
 app.use(express.json());
 
+app.options("/api/generate", cors());
+
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY!,
 });
