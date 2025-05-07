@@ -26,9 +26,11 @@ app.use(
     methods: ["POST", "OPTIONS"],
   })
 );
-app.use(express.json());
 
 app.options("*", cors());
+
+app.use(express.json());
+
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY!,
