@@ -9,7 +9,7 @@ console.log("🔐 OPENAI_API_KEY loaded:", process.env.OPENAI_API_KEY?.slice(0, 
 const app = express();
 app.use(
   cors({
-    origin: "https://learnui-ztvc.onrender.com",
+    origin: "https://learnui-plum.vercel.app",
     methods: ["POST"],
     credentials: false,
   })
