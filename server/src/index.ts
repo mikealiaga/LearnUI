@@ -7,7 +7,13 @@ dotenv.config();
 console.log("🔐 OPENAI_API_KEY loaded:", process.env.OPENAI_API_KEY?.slice(0, 8) + "...");
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://learnui-ztvc.onrender.com",
+    methods: ["POST"],
+    credentials: false,
+  })
+);
 app.use(express.json());
 
 const openai = new OpenAI({
