@@ -7,11 +7,21 @@ dotenv.config();
 console.log("🔐 OPENAI_API_KEY loaded:", process.env.OPENAI_API_KEY?.slice(0, 8) + "...");
 
 const app = express();
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://learnui-plum.vercel.app",
+];
+
 app.use(
   cors({
-    origin: "https://learnui-plum.vercel.app",
-    methods: ["POST"],
-    credentials: false,
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["POST", "OPTIONS"],
   })
 );
 app.use(express.json());
