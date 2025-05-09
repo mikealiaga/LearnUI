@@ -1,3 +1,4 @@
+import path from "path";
 import express, { Request, Response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -62,6 +63,12 @@ Generate a UX/UI design challenge with the following requirements:
     console.error("OpenAI error:", err);
     res.status(500).json({ error: "Failed to generate prompt" });
   }
+});
+
+const clientPath = path.join(__dirname, "../../dist");
+app.use(express.static(clientPath));
+app.get("*", (_, res) => {
+  res.sendFile(path.join(clientPath, "index.html"));
 });
 
 const PORT = process.env.PORT || 3000;
