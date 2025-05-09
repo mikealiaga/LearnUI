@@ -49,7 +49,7 @@ function Prompts() {
     // Function to fetch prompt data from API
     const generatePromptFromAPI = async () => {
         try {
-            const res = await fetch("/api/generate", {
+            const res = await fetch("http://localhost:3000/api/generate", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ difficulty: "easy" }),
