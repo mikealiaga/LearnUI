@@ -72,7 +72,7 @@ function Prompts() {
         <div className="md:w-md w-full max-w-md">
             <div className="text-center mb-12">
                 <h1 className="text-5xl font-extrabold mb-4 text-primary/90">LearnUI</h1>
-                <p className="text-md text-gray-500 mb-8 max-w-lg">Practice you UI skills by generating a prompt and designing some figma screens!</p>
+                <p className="text-md text-gray-500 mb-8 max-w-lg">Practice you UI skills by generating a prompt to design some figma screens!</p>
             </div>
             <div className="flex flex-col mb-16">
                 <div>
