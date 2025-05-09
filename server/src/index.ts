@@ -71,7 +71,16 @@ app.get("*", (_, res) => {
   res.sendFile(path.join(clientPath, "index.html"));
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
-});
+import { createServer } from "http";
+import { Server } from "http";
+
+let server: Server;
+
+import { IncomingMessage, ServerResponse } from "http";
+
+export default function handler(req: IncomingMessage, res: ServerResponse){
+  if (!server) {
+    server = createServer(app);
+  }
+  server.emit("request", req, res);
+}
