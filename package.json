@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run build --workspace server && vite build",
+    "build": "tsc -p server && vite build",
     "start": "node server/dist/index.js",
     "lint": "eslint .",
     "preview": "vite preview"
